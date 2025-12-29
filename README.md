@@ -2,6 +2,19 @@
 
 TrustBridge is a fintech platform that leverages the RBI Account Aggregator (AA) framework to generate alternative credit scores for users without traditional credit history. The platform analyzes cash flow patterns, investment behavior, and payment consistency to create comprehensive creditworthiness assessments.
 
+## 🧠 Built with Kiro
+
+This project was ideated, planned, and architected using **[Kiro IDE](https://kiro.dev)**.
+
+We used Kiro to structure our development process before writing a single line of code.
+* **Planning:** The `kiro/` folder contains our initial ideation notes, problem statements, and architectural decisions.
+* **Structure:** We used Kiro to map out the frontend/backend data flow (React ↔ Node ↔ PostgreSQL) and the mock data engine.
+* **Documentation:** All logic flows for the Credit Scoring Engine and 3D visualizations are documented within the Kiro environment.
+
+👉 **[Check out our Kiro planning folder here](./kiro)**
+
+---
+
 ## 🎯 Target Audience
 
 - Gen Z and first-time job seekers
