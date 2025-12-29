@@ -11,7 +11,7 @@ We used Kiro to structure our development process before writing a single line o
 * **Structure:** We used Kiro to map out the frontend/backend data flow (React ↔ Node ↔ PostgreSQL) and the mock data engine.
 * **Documentation:** All logic flows for the Credit Scoring Engine and 3D visualizations are documented within the Kiro environment.
 
-👉 **[Check out our Kiro planning folder here](./kiro)**
+👉 **[Check out our Kiro planning folder here](.kiro/specs/trustbridge-platform)**
 
 ---
 
