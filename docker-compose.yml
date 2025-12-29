@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: trustbridge-postgres
+    environment:
+      POSTGRES_DB: trustbridge
+      POSTGRES_USER: trustbridge_user
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - trustbridge-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: trustbridge-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - trustbridge-network
+
+  # Backend API Server
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: trustbridge-backend
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://trustbridge_user:dev_password@postgres:5432/trustbridge
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - trustbridge-network
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: trustbridge-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - trustbridge-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  trustbridge-network:
+    driver: bridge
