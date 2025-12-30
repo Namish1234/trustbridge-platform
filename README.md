@@ -46,6 +46,14 @@ We used Kiro to structure our development process before writing a single line o
 
 ## 🚀 Quick Start
 
+### 🌐 Live Demo
+
+**Deploy your own demo instantly:**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNamish1234%2Ftrustbridge-platform&env=VITE_DEMO_MODE,VITE_APP_ENV&envDescription=Environment%20variables%20for%20TrustBridge%20demo&project-name=trustbridge-platform)
+
+Or visit the live demo: **[TrustBridge Demo](https://trustbridge-platform.vercel.app)** *(Coming soon)*
+
 ### Prerequisites
 - Node.js 18+
 - Docker and Docker Compose
@@ -56,7 +64,7 @@ We used Kiro to structure our development process before writing a single line o
 
 1. **Clone and setup**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Namish1234/trustbridge-platform.git
    cd trustbridge-platform
    cp .env.example .env
    ```
@@ -107,6 +115,19 @@ Copy `.env.example` to `.env` and configure:
 - **Consent Management**: Granular user permissions
 - **Audit Trails**: Comprehensive logging
 - **Rate Limiting**: API protection
+
+## 🌐 Deployment
+
+### Quick Deploy (Demo Mode)
+- **Vercel**: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNamish1234%2Ftrustbridge-platform)
+- **Netlify**: Connect your GitHub repo to Netlify for automatic deployment
+
+### Full Stack Deployment
+- **Backend**: Railway, Render, or AWS
+- **Database**: PostgreSQL on Railway, Supabase, or AWS RDS
+- **Cache**: Redis on Railway, Upstash, or AWS ElastiCache
+
+See [Deployment Guide](./DEPLOYMENT_GUIDE.md) for detailed instructions.
 
 ## 🛠️ Development
 
