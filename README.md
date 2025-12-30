@@ -1,6 +1,6 @@
 # TrustBridge - Alternative Credit Scoring Platform
 
-TrustBridge is a fintech platform that leverages the RBI Account Aggregator (AA) framework to generate alternative credit scores for users without traditional credit history. The platform analyzes cash flow patterns, investment behavior, and payment consistency to create comprehensive creditworthiness assessments.
+TrustBridge is a fintech platform that leverages the RBI Account Aggregator (AA) framework to generate alternative credit scores for users without traditional credit history. The platform analyzes cash flow patterns, investment behavior, and payment consistency to create comprehensive creditworthiness assessments. Read more details on the medium post- https://medium.com/@namishshukla2/building-trustbridge-a-technical-deep-dive-into-alternative-credit-scoring-5e72d7404f56
 
 ## 🚀 Quick Deploy (Demo Mode)
 
