@@ -2,6 +2,18 @@
 
 TrustBridge is a fintech platform that leverages the RBI Account Aggregator (AA) framework to generate alternative credit scores for users without traditional credit history. The platform analyzes cash flow patterns, investment behavior, and payment consistency to create comprehensive creditworthiness assessments.
 
+## 🚀 Quick Deploy (Demo Mode)
+
+Deploy the demo version instantly:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNamish1234%2Ftrustbridge-platform&project-name=trustbridge-demo&repository-name=trustbridge-platform&root-directory=frontend&env=VITE_DEMO_MODE,VITE_APP_ENV&envDescription=Environment%20variables%20for%20demo%20mode&envLink=https%3A%2F%2Fgithub.com%2FNamish1234%2Ftrustbridge-platform%23environment-variables)
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Namish1234/trustbridge-platform&base=frontend)
+
+> **Demo Mode**: Includes full UI/UX with simulated data - no backend required!
+> 
+> 📖 **[Step-by-step deployment guide](DEPLOY_INSTRUCTIONS.md)**
+
 ## 🧠 Built with Kiro
 
 This project was ideated, planned, and architected using **[Kiro IDE](https://kiro.dev)**.
