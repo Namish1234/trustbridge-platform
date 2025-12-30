@@ -102,11 +102,65 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
 
   const loadDemoData = () => {
     // Load demo data immediately
-    const mockData = useMockData();
-    setCreditScore(mockData.creditScore);
-    setScoreHistory(mockData.scoreHistory);
-    setAccountConnections(mockData.accountConnections);
-    setDataSufficiency(mockData.dataSufficiency);
+    const mockCreditScore: CreditScore = {
+      score: 742,
+      confidence: 0.85,
+      trend: 'improving',
+      date: new Date().toISOString(),
+      factors: [
+        { name: 'Income Stability', value: 85, impact: 'positive', weight: 0.3 },
+        { name: 'Savings Rate', value: 78, impact: 'positive', weight: 0.25 },
+        { name: 'Payment Behavior', value: 92, impact: 'positive', weight: 0.2 },
+        { name: 'Investment Activity', value: 65, impact: 'neutral', weight: 0.15 },
+        { name: 'Account Diversity', value: 70, impact: 'positive', weight: 0.1 }
+      ]
+    };
+
+    const mockScoreHistory: CreditScore[] = [
+      { score: 680, confidence: 0.75, trend: 'stable', date: '2024-01-01T00:00:00Z', factors: [] },
+      { score: 695, confidence: 0.78, trend: 'improving', date: '2024-02-01T00:00:00Z', factors: [] },
+      { score: 710, confidence: 0.80, trend: 'improving', date: '2024-03-01T00:00:00Z', factors: [] },
+      { score: 725, confidence: 0.82, trend: 'improving', date: '2024-04-01T00:00:00Z', factors: [] },
+      { score: 742, confidence: 0.85, trend: 'improving', date: new Date().toISOString(), factors: [] }
+    ];
+
+    const mockAccountConnections: AccountConnection[] = [
+      {
+        id: 'conn-1',
+        institutionName: 'HDFC Bank',
+        accountType: 'Savings',
+        status: 'connected',
+        lastSync: new Date().toISOString(),
+        consentExpiry: '2025-01-15T10:30:00Z'
+      },
+      {
+        id: 'conn-2',
+        institutionName: 'Zerodha',
+        accountType: 'Investment',
+        status: 'connected',
+        lastSync: new Date().toISOString(),
+        consentExpiry: '2024-08-01T14:20:00Z'
+      }
+    ];
+
+    const mockDataSufficiency: DataSufficiency = {
+      canProceed: true,
+      minimumRequirements: {
+        accounts: 2,
+        transactionHistory: 3,
+        categories: ['salary', 'expenses', 'savings']
+      },
+      currentStatus: {
+        connectedAccounts: 2,
+        transactionHistoryMonths: 6,
+        availableCategories: ['salary', 'expenses', 'savings', 'investments']
+      }
+    };
+
+    setCreditScore(mockCreditScore);
+    setScoreHistory(mockScoreHistory);
+    setAccountConnections(mockAccountConnections);
+    setDataSufficiency(mockDataSufficiency);
   };
 
   const loadInitialData = async () => {
@@ -145,9 +199,20 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
       setIsLoading(true);
       // Simulate calculation delay
       await new Promise(resolve => setTimeout(resolve, 3000));
-      const mockData = useMockData();
-      setCreditScore(mockData.creditScore);
-      setScoreHistory(mockData.scoreHistory);
+      const mockCreditScore: CreditScore = {
+        score: 742,
+        confidence: 0.85,
+        trend: 'improving',
+        date: new Date().toISOString(),
+        factors: [
+          { name: 'Income Stability', value: 85, impact: 'positive', weight: 0.3 },
+          { name: 'Savings Rate', value: 78, impact: 'positive', weight: 0.25 },
+          { name: 'Payment Behavior', value: 92, impact: 'positive', weight: 0.2 },
+          { name: 'Investment Activity', value: 65, impact: 'neutral', weight: 0.15 },
+          { name: 'Account Diversity', value: 70, impact: 'positive', weight: 0.1 }
+        ]
+      };
+      setCreditScore(mockCreditScore);
       setIsLoading(false);
       return;
     }
@@ -174,8 +239,20 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     if (isDemoMode) {
       setIsLoading(true);
       await new Promise(resolve => setTimeout(resolve, 2000));
-      const mockData = useMockData();
-      setCreditScore(mockData.creditScore);
+      const mockCreditScore: CreditScore = {
+        score: 742,
+        confidence: 0.85,
+        trend: 'improving',
+        date: new Date().toISOString(),
+        factors: [
+          { name: 'Income Stability', value: 85, impact: 'positive', weight: 0.3 },
+          { name: 'Savings Rate', value: 78, impact: 'positive', weight: 0.25 },
+          { name: 'Payment Behavior', value: 92, impact: 'positive', weight: 0.2 },
+          { name: 'Investment Activity', value: 65, impact: 'neutral', weight: 0.15 },
+          { name: 'Account Diversity', value: 70, impact: 'positive', weight: 0.1 }
+        ]
+      };
+      setCreditScore(mockCreditScore);
       setIsLoading(false);
       return;
     }
