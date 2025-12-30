@@ -1,0 +1,28 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[[services]]
+name = "backend"
+source = "backend"
+
+[services.backend.build]
+buildCommand = "npm run build"
+startCommand = "npm start"
+
+[services.backend.variables]
+NODE_ENV = "production"
+PORT = "3001"
+
+[[services]]
+name = "postgres"
+source = "postgres:15"
+
+[services.postgres.variables]
+POSTGRES_DB = "trustbridge"
+POSTGRES_USER = "trustbridge_user"

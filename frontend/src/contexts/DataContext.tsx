@@ -80,10 +80,17 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Check if we're in demo mode
+  const isDemoMode = import.meta.env.VITE_DEMO_MODE === 'true' || !import.meta.env.VITE_API_URL;
+
   // Load initial data when authenticated
   useEffect(() => {
     if (isAuthenticated) {
-      loadInitialData();
+      if (isDemoMode) {
+        loadDemoData();
+      } else {
+        loadInitialData();
+      }
     } else {
       // Clear data when not authenticated
       setCreditScore(null);
@@ -91,7 +98,16 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
       setAccountConnections([]);
       setDataSufficiency(null);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isDemoMode]);
+
+  const loadDemoData = () => {
+    // Load demo data immediately
+    const mockData = useMockData();
+    setCreditScore(mockData.creditScore);
+    setScoreHistory(mockData.scoreHistory);
+    setAccountConnections(mockData.accountConnections);
+    setDataSufficiency(mockData.dataSufficiency);
+  };
 
   const loadInitialData = async () => {
     setIsLoading(true);
@@ -125,6 +141,17 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   };
 
   const calculateScore = async () => {
+    if (isDemoMode) {
+      setIsLoading(true);
+      // Simulate calculation delay
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      const mockData = useMockData();
+      setCreditScore(mockData.creditScore);
+      setScoreHistory(mockData.scoreHistory);
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     
@@ -144,6 +171,15 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   };
 
   const refreshScore = async () => {
+    if (isDemoMode) {
+      setIsLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      const mockData = useMockData();
+      setCreditScore(mockData.creditScore);
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     
@@ -163,6 +199,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   };
 
   const getScoreHistory = async () => {
+    if (isDemoMode) return; // Demo data already loaded
+    
     try {
       const response = await apiService.scores.getHistory(12); // Last 12 scores
       setScoreHistory(response.data.history || []);
@@ -175,6 +213,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   };
 
   const getAccountConnections = async () => {
+    if (isDemoMode) return; // Demo data already loaded
+    
     try {
       const response = await apiService.accounts.getConnections();
       setAccountConnections(response.data.connections || []);
@@ -187,6 +227,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   };
 
   const checkDataSufficiency = async () => {
+    if (isDemoMode) return; // Demo data already loaded
+    
     try {
       const response = await apiService.scores.checkDataSufficiency();
       setDataSufficiency(response.data);
@@ -211,6 +253,13 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
   };
 
   const syncAccountData = async () => {
+    if (isDemoMode) {
+      setIsLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setIsLoading(false);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     
